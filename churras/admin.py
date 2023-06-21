@@ -10,7 +10,7 @@ class ListandoPratos(admin.ModelAdmin):
         'nome_prato',
         'categoria',
         'tempo_preparo',
-        'rendimento',
+        'rendimento','publicado'
     ]
     list_display_links = [
         'id',
@@ -19,14 +19,20 @@ class ListandoPratos(admin.ModelAdmin):
     list_filter = [
         'categoria',
     ]
-    list_per_page = 3
+    list_per_page = 7
     search_fields = [
         'nome_prato',
         'categoria',
     ]
+
     list_editable = [
-        'categoria',
+        'categoria','publicado'
     ]
+    ordering = ['-id']
+
+    list_filter = ['categoria']
+
+
 
 
 

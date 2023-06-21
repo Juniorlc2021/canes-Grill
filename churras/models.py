@@ -1,14 +1,18 @@
 from django.db import models
 from datetime import datetime
 
+from pessoas.models import pessoa
+
 ## Esta classe de models se tornará uma tabela no banco de dados.
 class Prato(models.Model):
     ## serão os campos da tabela (atributos da classe)
+    pessoa = models.ForeignKey(pessoa, on_delete=models.CASCADE)
+
     nome_prato = models.CharField(
         max_length=100,
         verbose_name='Nome do Prato',
     )
-    ingredientes = models.TextField(
+    ingredientes = models.TextField(   
         verbose_name='Ingredientes',
     )
     modo_preparo = models.TextField(
@@ -30,7 +34,12 @@ class Prato(models.Model):
         blank=True,
         verbose_name='Data Criação do Prato',
     )
-    
+
+    foto_prato = models.ImageField(
+        upload_to='pratos/%Y/%m',
+        blank=True
+    )
+    publicado = models.BooleanField(default=False)
     
     def __str__(self):
         return self.nome_prato
