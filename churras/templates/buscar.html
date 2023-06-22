@@ -1,3 +1,4 @@
+
 {% extends 'base.html' %}
 {% load static %}
 
@@ -29,8 +30,11 @@
         <div class="col-12">
             Não há pratos a serem mostrados
         </div>
-        {% endfor %}
-    </div>
-</div>
 
-{% endblock conteudo %}
+        {% empty %}
+        
+ {% endblock %}
+   
+
+
+
