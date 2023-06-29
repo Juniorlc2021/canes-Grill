@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
 
+from churras.models import Prato
+
 # Create your views here.
 
 
@@ -54,7 +56,7 @@ def login(request):
         if email == "" or senha == "":
             print('Os campos e-mail e senha não podem ficar em branco')
             return redirect('login')
-        print(email, senha)
+        #print(email, senha)
         if User.objects.filter(email=email).exists():
             nome = User.objects.filter(email=email).values_list('username', flat=True).get()
             user = auth.authenticate(request, username=nome, password=senha)
@@ -67,17 +69,32 @@ def login(request):
         print('Usuário e/ou senha inválidos')
         return redirect('login')
 
-        return redirect('dashboard')
+    return redirect('login.html')
+    #return redirect('dashboard')
         
 
-    return render(request, 'login.html')
-
 def dashboard(request):
-    return render (request, 'dashboard.html')
+    if request.user.is_authenticated:
+        pratos = Prato.objects.filter(publicado=True).order_by('-date_prato')
+        return render (request, 'dashboard.html')
+
+    return redirect('index')
 
 def logout(request):
     auth.logout(request)
     print('Você realizou o Logout')
     return redirect('index')
+
+def cria_prato(request):
+    if request.method == 'POST':
+        print(f'\n{request.POST["nome_prato"]}')
+        nome_prato = request.POST['nome_prato']
+        ingredientes = request.POST['ingredientes']
+        modo_preparo = request.POST['tempo_preparo']
+        tempo_preparo = request.POST['modo_preparo']
+        rendimento = request.POST['rendimento']
+        categoria = request.POST['categoria']
+        foto_prato = request.POST['foto_prato']
+        return render(request, 'cria_prato.html')
 
 

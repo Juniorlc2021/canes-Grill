@@ -29,7 +29,7 @@ def buscar(request):
     
     if 'busca'in request.GET:
         nome_a_buscar = request.GET['busca']
-        pratos = pratos.filter(nome_prato_icontains=nome_a_buscar)
+        pratos = pratos.filter(nome_prato__icontains=nome_a_buscar)
 
     contexto ={
         'lista_pratos' : pratos,
