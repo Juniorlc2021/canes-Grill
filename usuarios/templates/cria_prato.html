@@ -40,23 +40,28 @@
 
                                 <div class="col-12 col-lg-3">
                                     <label for="tempo_preparo"><b>Tempo de preparo</b></label>
-                                    <textarea type="number" id="tempo_preparo" class="form-control" name="modo_preparo" placeholder="ex. 2" required></textarea>
+                                    <input type="number" id="tempo_preparo" class="form-control" name="modo_preparo" placeholder="ex. 2" required>
                                 </div>
 
                                 <div class="col-12 col-lg-3">
                                     <label for="rendimento"><b>Rendimento</b></label>
-                                    <textarea type="text" id="rendimento" class="form-control" name="rendimento" placeholder="ex. serve 1 pessoa" required></textarea>
+                                    <input type="text" id="rendimento" class="form-control" name="rendimento" placeholder="ex. serve 1 pessoa" required>
+                                </div>
+
+                                <div class="col-12 col-lg-3">
+                                    <label for="foto_prato"><b>Categoria</b></label>
+                                    <input type="text" id="categoria" class="form-control" name="categoria" placeholder="ex. 2" required>
                                 </div>
 
                                 <div class="col-12 col-lg-3">
                                     <label for="foto_prato"><b>Foto</b></label>
-                                    <textarea type="file" id="foto_prato" class="form-control" name="foto_prato" placeholder="ex. churrasco" required></textarea>
+                                    <input type="file" id="foto_prato" class="form-control" name="foto_prato" placeholder="ex. churrasco" required>
                                 </div>
 
                               
                             <div class="col-12 text-center">
                                     <button type="submit" class="btn btn-success">Criar seu prato</button>
-                                    <button type="button" class="btn btn-danger" style="background-color: rgb(255, 38, 0);" onclick="cancelar();">Cancelar</button>
+                                    <button type="button" class="btn btn-danger" style="background-color: red;" onclick="cancelar();">Cancelar</button>
                                 </div>
                             </div>
                         </form>

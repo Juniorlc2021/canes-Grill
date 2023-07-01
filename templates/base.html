@@ -33,7 +33,12 @@
 
     <!-- ##### Best Receipe Area Start ##### -->
     <section class="best-receipe-area">
-        {% block conteudo %} {% endblock conteudo %}
+
+        {% include 'partials/_alertas.html' %}
+        
+        {% block conteudo %} 
+        
+        {% endblock conteudo %}
     </section>
     <!-- ##### Best Receipe Area End ##### -->
 
