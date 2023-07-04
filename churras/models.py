@@ -2,7 +2,7 @@ from django.db import models
 from datetime import datetime
 from django.contrib.auth.models import User
 
-from pessoas.models import pessoa
+#from pessoas.models import pessoa
 
 ## Esta classe de models se tornará uma tabela no banco de dados.
 class Prato(models.Model):
