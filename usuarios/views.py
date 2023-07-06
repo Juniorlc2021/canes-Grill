@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import auth, messages
 
+
+
 from churras.models import Prato
 
 def campo_vazio(campo):
@@ -157,34 +159,36 @@ def edita_prato(request, prato_id):
     return render (request, 'edita_prato.html', contexto)
     
 def atualiza_prato(request):
-        if request.user.is_authenticated:
-            if request.method == 'POST':
-                # recuperar dados do formulario
-                #print(f'\n{request.POST["nome_prato"]}')
-                prato_id = request.POST[prato_id]
-                nome_prato = request.POST['nome_prato']
-                ingredientes = request.POST['ingredientes']
-                modo_preparo = request.POST['modo_preparo']
-                tempo_preparo = request.POST['tempo_preparo']
-                rendimento = request.POST['rendimento']
-                categoria = request.POST['categoria']
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            
+            #print(f'\n{request.POST["nome_prato"]}')
+            prato_id=request.POST['prato_id']
+            nome_prato = request.POST['nome_prato']
+            ingredientes = request.POST['ingredientes']
+            modo_preparo = request.POST['modo_preparo']
+            tempo_preparo = request.POST['tempo_preparo']
+            rendimento = request.POST['rendimento']
+            categoria = request.POST['categoria']
             #foto_prato = request.FILES['foto_prato']
             
-
-            prato= Prato.object.get(User, pk=prato_id)
-
-           
+            
+            prato= Prato.objects.get(pk=prato_id)
+                
             prato.nome_prato=nome_prato,
-            prato.ingredientes=ingredientes
-            prato.modo_preparo=modo_preparo 
-            prato.tempo_preparo=tempo_preparo 
-            prato.rendimento=rendimento 
-            prato.categoria=categoria
+            prato.ingredientes=ingredientes,
+            prato.modo_preparo=modo_preparo,
+            prato.rendimento=rendimento,
+            prato.categoria=categoria,
             if 'foto_prato' in request.FILES:
                 prato.foto_prato=request.FILES['foto_prato']
             
             prato.save()
-            messages.success(request, 'Prato alterado com sucesso!')
+            messages.success(request,'prato alterado com sucesso')
             return redirect('dashboard')
-        return redirect 
+        
+        return render(request, 'cria_prato.html')
+    
+    messages.error(request,'Voce nao tem permissao para criar Pratos')
+    return redirect('index')
     
